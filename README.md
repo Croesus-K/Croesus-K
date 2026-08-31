@@ -100,9 +100,9 @@
 
 ---
 
-## 📈 活跃曲线
+## 📈 贡献热力图
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Croesus-K&theme=tokyo-night&hide_border=true&bg_color=0D1117&color=8B5CF6&line=58A6FF&point=E11D48&area=true&area_color=8B5CF6" alt="activity graph" width="100%" />
+<img src="https://ghchart.rshah.org/256/Croesus-K" alt="Croesus-K 的贡献热力图" width="100%" />
 
 <div align="center">
 
