@@ -36,7 +36,7 @@
   var cv=document.getElementById('bg'),cx=cv.getContext('2d');
   var CELL=28,DPR=Math.max(1,window.devicePixelRatio||1);
   var W=0,H=0,COLS=0,ROWS=0;
-  var snake,dir,food,eaten=0,tick=null,SPEED=115;
+  var snake,dir,food,eaten=0,tick=null,SPEED=65;
   var target={x:0,y:0};
 
   function resize(){
@@ -48,8 +48,8 @@
   }
   function reset(){
     snake=[];var cy=Math.floor(ROWS/2),cx0=Math.floor(COLS/2);
-    for(var i=0;i<8;i++)snake.push({x:cx0-i,y:cy});
-    dir={x:1,y:0};eaten=0;spawnFood();upd();
+    for(var i=0;i<10;i++)snake.push({x:cx0-i,y:cy});
+    dir={x:1,y:0};eaten=0;SPEED=65;spawnFood();upd();
   }
   function spawnFood(){
     for(;;){var f={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)};
@@ -70,56 +70,71 @@
 
   function inBody(x,y){return snake.some(function(s){return s.x===x&&s.y===y});}
 
+  // 洪水填充：估算某格周围的可活动空间，避免钻进死胡同
+  function freeSpace(sx,sy){
+    var cap=Math.min(140,snake.length+12),seen={},q=[[sx,sy]],n=0;
+    seen[sx+','+sy]=1;
+    while(q.length&&n<cap){
+      var c=q.shift();n++;
+      var dd=[[1,0],[-1,0],[0,1],[0,-1]];
+      for(var i=0;i<4;i++){
+        var nx=c[0]+dd[i][0],ny=c[1]+dd[i][1],k=nx+','+ny;
+        if(nx<0||ny<0||nx>=COLS||ny>=ROWS||seen[k]||inBody(nx,ny))continue;
+        seen[k]=1;q.push([nx,ny]);
+      }
+    }
+    return n;
+  }
+
   function step(){
-    var head=snake[0],best=null,bestD=1e9;
+    var head=snake[0];
     var dirs=[{x:1,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}];
-    // 优先：朝目标靠近 && 不撞自己
-    dirs.sort(function(a,b){
-      var da=Math.abs(head.x+a.x-target.x)+Math.abs(head.y+a.y-target.y);
-      var db=Math.abs(head.x+b.x-target.x)+Math.abs(head.y+b.y-target.y);
-      return da-db;});
-    for(var i=0;i<4;i++){var d=dirs[i],nx=head.x+d.x,ny=head.y+d.y;
+    var cands=[];
+    for(var i=0;i<4;i++){
+      var d=dirs[i],nx=head.x+d.x,ny=head.y+d.y;
       if(nx<0||ny<0||nx>=COLS||ny>=ROWS)continue;
       if(snake.length>1&&nx===snake[1].x&&ny===snake[1].y)continue;
       if(inBody(nx,ny))continue;
-      best={x:d.x,y:d.y};break;}
-    if(!best){ // 实在无路可走：允许贴身绕，仍不行就重置
-      for(var j=0;j<4;j++){var d2=dirs[j],nx2=head.x+d2.x,ny2=head.y+d2.y;
-        if(nx2<0||ny2<0||nx2>=COLS||ny2>=ROWS)continue;
-        if(inBody(nx2,ny2))continue;best={x:d2.x,y:d2.y};break;}}
-    if(!best){reset();return;}
-    dir=best;
-    var nh={x:head.x+best.x,y:head.y+best.y};
+      cands.push({x:d.x,y:d.y,nx:nx,ny:ny,
+        dist:Math.abs(nx-target.x)+Math.abs(ny-target.y)});
+    }
+    if(!cands.length){ // 完全被困：剪掉一半身体继续爬，不清盘
+      snake.length=Math.max(10,Math.ceil(snake.length/2));return;
+    }
+    cands.sort(function(a,b){return a.dist-b.dist;});
+    var best=null,need=Math.min(140,snake.length+12);
+    for(var j=0;j<cands.length;j++){
+      if(freeSpace(cands[j].nx,cands[j].ny)>=need){best=cands[j];break;}
+    }
+    if(!best)best=cands[0]; // 都不够宽敞时走最接近目标的
+    dir={x:best.x,y:best.y};
+    var nh={x:best.nx,y:best.ny};
     snake.unshift(nh);
     if(food&&nh.x===food.x&&nh.y===food.y){
-      eaten++;SPEED=Math.max(70,SPEED-2);spawnFood();
-      if(snake.length>40)snake.pop();
-      clearInterval(tick);tick=setInterval(step,SPEED);
+      eaten++;SPEED=Math.max(40,SPEED-3);spawnFood();
+      if(snake.length>80)snake.pop();
+      clearInterval(tick);tick=setInterval(loop,SPEED);
     }else snake.pop();
     upd();
   }
 
   function render(){
     cx.fillStyle='#0D1117';cx.fillRect(0,0,W,H);
-    // 网格
     cx.strokeStyle='rgba(48,54,61,.55)';cx.lineWidth=1;
     cx.beginPath();
     for(var gx=0;gx<=COLS;gx++){cx.moveTo(gx*CELL+.5,0);cx.lineTo(gx*CELL+.5,H);}
     for(var gy=0;gy<=ROWS;gy++){cx.moveTo(0,gy*CELL+.5);cx.lineTo(W,gy*CELL+.5);}
     cx.stroke();
-    // 目标格（鼠标位置）高亮
     cx.fillStyle='rgba(88,166,255,.14)';
     cx.fillRect(target.x*CELL,target.y*CELL,CELL,CELL);
     cx.strokeStyle='rgba(88,166,255,.6)';
     cx.strokeRect(target.x*CELL+2.5,target.y*CELL+2.5,CELL-5,CELL-5);
-    // 食物
     if(food){var pad=6;cx.save();
       cx.shadowColor='#E11D48';cx.shadowBlur=14;
       cx.fillStyle='#E11D48';
       cx.beginPath();
       cx.roundRect(food.x*CELL+pad,food.y*CELL+pad,CELL-2*pad,CELL-2*pad,6);
       cx.fill();cx.restore();}
-    // 蛇身（头蓝紫 → 尾红渐变 + 发光）
     for(var i=snake.length-1;i>=0;i--){
       var s=snake[i],t=snake.length>1?i/(snake.length-1):0;
       var hue=213+t*117,light=62-t*14;
@@ -131,16 +146,16 @@
       cx.roundRect(s.x*CELL+3,s.y*CELL+3,CELL-6,CELL-6,i===0?8:5);
       cx.fill();cx.restore();
     }
-    // 蛇眼睛（随方向）
     var h0=snake[0],ex=h0.x*CELL+CELL/2,ey=h0.y*CELL+CELL/2;
     var ox=dir.y!==0?5:dir.x*4,oy=dir.x!==0?5:dir.y*4;
     cx.fillStyle='#fff';
     cx.beginPath();cx.arc(ex-ox,ey-oy,2.4,0,7);cx.arc(ex+ox,ey+oy,2.4,0,7);cx.fill();
   }
 
+  function loop(){step();render();} // 移动和绘制永远绑定在同一个循环里
   window.addEventListener('resize',function(){resize();});
   resize();reset();
-  tick=setInterval(function(){step();render();},SPEED);
+  tick=setInterval(loop,SPEED);
   render();
 })();
 </script>
