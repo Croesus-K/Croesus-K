@@ -14,6 +14,22 @@
 
 ---
 
+## 🐍 网格贪吃蛇
+
+<div align="center">
+
+<img src="snake.svg" width="100%" alt="网格贪吃蛇：蛇沿方格自主巡游，追逐红色方块" />
+
+**一条霓虹蛇在方格世界里自主巡游，追猎前方的红色方块 —— 无限循环。**
+
+[![🎮 网格贪吃蛇 · 移动鼠标，蛇来追你](https://img.shields.io/badge/%F0%9F%8E%AE_%E7%BD%91%E6%A0%BC%E8%B4%AA%E5%90%83%E8%9B%87-%E7%A7%BB%E5%8A%A8%E9%BC%A0%E6%A0%87%EF%BC%8C%E8%9B%87%E6%9D%A5%E8%BF%BD%E4%BD%A0-8B5CF6?style=for-the-badge&labelColor=0D1117)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Croesus-K/Croesus-K/main/snake.html)
+
+*GitHub 主页禁止运行脚本，上面是预录的巡游动画；点按钮进入互动版——整页网格，蛇沿方格追你的鼠标。*
+
+</div>
+
+---
+
 ## 🛠 作品
 
 <div align="center">
@@ -52,20 +68,6 @@
 
 > 📖 **《我给自己造了个 AI 代码安全审查器》**
 > 从 `Math.random` 弱随机的教训，到 98 项测试、误报率实测的完整故事。
-
----
-
-## 🎮 网格贪吃蛇
-
-<div align="center">
-
-**整页都是网格，蛇沿着方格追着你的鼠标跑。**
-
-[![🐍 网格贪吃蛇 · 移动鼠标，蛇来追你](https://img.shields.io/badge/%F0%9F%8E%AE_%E7%BD%91%E6%A0%BC%E8%B4%AA%E5%90%83%E8%9B%87-%E7%A7%BB%E5%8A%A8%E9%BC%A0%E6%A0%87%EF%BC%8C%E8%9B%87%E6%9D%A5%E8%BF%BD%E4%BD%A0-8B5CF6?style=for-the-badge&labelColor=0D1117)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Croesus-K/Croesus-K/main/snake.html)
-
-*GitHub 的 README 页面禁止运行脚本，所以游戏放在独立页面里——点上面按钮即玩，吃掉红色方块会越来越快。*
-
-</div>
 
 ---
 

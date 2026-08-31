@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 300" width="840" height="300" role="img" aria-label="网格贪吃蛇：一条蛇沿方格线路自主爬行，追逐红色方块">
+  <defs>
+    <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#30363D" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <path id="route" d="M20,30H260V110H420V50H580V110H740V50H820V270H580V190H420V270H180V190H20V270Z" fill="none"/>
+  </defs>
+
+  <rect x="0" y="0" width="840" height="300" fill="#0D1117"/>
+  <rect x="0" y="10" width="840" height="280" fill="url(#g)"/>
+
+  <!-- 食物：始终在蛇头前方 2 格 -->
+  <g filter="url(#glow)">
+    <rect x="-8" y="-8" width="16" height="16" rx="4" fill="#E11D48">
+      <animate attributeName="opacity" values="1;.5;1" dur="0.9s" repeatCount="indefinite"/>
+    </rect>
+    <animateMotion dur="10s" begin="-0.3125s" repeatCount="indefinite">
+      <mpath href="#route"/>
+    </animateMotion>
+  </g>
+
+  <!-- 蛇头 + 眼睛 -->
+  <g filter="url(#glow)">
+    <rect x="-13" y="-13" width="26" height="26" rx="7" fill="#58A6FF"/>
+    <circle cx="-4" cy="-5" r="2.6" fill="#ffffff"/>
+    <circle cx="4" cy="-5" r="2.6" fill="#ffffff"/>
+    <animateMotion dur="10s" begin="-10s" repeatCount="indefinite">
+      <mpath href="#route"/>
+    </animateMotion>
+  </g>
+
+  <!-- 蛇身：15 节，蓝紫渐变到红 -->
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(221,90%,60%)"/>
+    <animateMotion dur="10s" begin="-9.84375s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(229,90%,59%)"/>
+    <animateMotion dur="10s" begin="-9.6875s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(236,90%,56%)"/>
+    <animateMotion dur="10s" begin="-9.53125s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(244,90%,54%)"/>
+    <animateMotion dur="10s" begin="-9.375s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(252,90%,52%)"/>
+    <animateMotion dur="10s" begin="-9.21875s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(260,90%,50%)"/>
+    <animateMotion dur="10s" begin="-9.0625s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(268,90%,49%)"/>
+    <animateMotion dur="10s" begin="-8.90625s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(275,90%,47%)"/>
+    <animateMotion dur="10s" begin="-8.75s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(283,90%,45%)"/>
+    <animateMotion dur="10s" begin="-8.59375s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(291,90%,43%)"/>
+    <animateMotion dur="10s" begin="-8.4375s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(299,90%,41%)"/>
+    <animateMotion dur="10s" begin="-8.28125s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(307,90%,39%)"/>
+    <animateMotion dur="10s" begin="-8.125s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(314,90%,37%)"/>
+    <animateMotion dur="10s" begin="-7.96875s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(322,90%,35%)"/>
+    <animateMotion dur="10s" begin="-7.8125s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+  <g>
+    <rect x="-13" y="-13" width="26" height="26" rx="6" fill="hsl(330,90%,33%)"/>
+    <animateMotion dur="10s" begin="-7.65625s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </g>
+</svg>
