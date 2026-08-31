@@ -100,10 +100,6 @@
 
 ---
 
-## 📈 贡献热力图
-
-<img src="https://ghchart.rshah.org/256/Croesus-K" alt="Croesus-K 的贡献热力图" width="100%" />
-
 <div align="center">
 
 <img height="150" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Croesus-K&locale=zh-cn&layout=compact&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9" alt="top langs" />
