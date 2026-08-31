@@ -64,6 +64,22 @@
 
 ---
 
+## 📦 全部项目
+
+**原创**
+
+- 🧠 [**InjectArena**](https://github.com/Croesus-K/InjectArena) —— 攻心 · 中文可自部署的 **LLM 提示注入攻防闯关靶场**，攻防双向评分 ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=0D1117)
+- 🗡 [**Dark Bounty Killer**](https://github.com/Croesus-K/Dark-Bounty-Killer-Mission-Contract-Management-System) —— 纯前端沉浸式暗黑赏金猎人风格**任务管理工具**：杀手契约 / 悬赏任务、全生命周期管理、智能到期排序、实时倒计时，数据可导出 JSON，开箱即用 ![](https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
+- 🛡 [**bounty-guard**](https://github.com/Croesus-K/bounty-guard) —— AI 代码安全审查助手（详见上方卡片） ![](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+- 🎯 [**bounty-guard-playground**](https://github.com/Croesus-K/bounty-guard-playground) —— 扫描器实战靶场（详见上方卡片） ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=0D1117)
+
+**Fork 参与**
+
+- 🌐 [owasp-vwad.github.io](https://github.com/Croesus-K/owasp-vwad.github.io) —— OWASP VWAD 官网（InjectArena 收录 PR 审核中）
+- 🌐 [www-project-vulnerable-web-applications-directory](https://github.com/Croesus-K/www-project-vulnerable-web-applications-directory) —— OWASP VWAD：知名脆弱应用登记册
+
+---
+
 ## ✍️ 正在写
 
 > 📖 **《我给自己造了个 AI 代码安全审查器》**
