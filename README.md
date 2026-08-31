@@ -22,7 +22,7 @@
 
 **一条霓虹蛇在方格世界里自主巡游，追猎前方的红色方块 —— 无限循环。**
 
-[![🎮 网格贪吃蛇 · 移动鼠标，蛇来追你](https://img.shields.io/badge/%F0%9F%8E%AE_%E7%BD%91%E6%A0%BC%E8%B4%AA%E5%90%83%E8%9B%87-%E7%A7%BB%E5%8A%A8%E9%BC%A0%E6%A0%87%EF%BC%8C%E8%9B%87%E6%9D%A5%E8%BF%BD%E4%BD%A0-8B5CF6?style=for-the-badge&labelColor=0D1117)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Croesus-K/Croesus-K/main/snake.html)
+[![🎮 网格贪吃蛇 · 移动鼠标，蛇来追你](https://img.shields.io/badge/%F0%9F%8E%AE_%E7%BD%91%E6%A0%BC%E8%B4%AA%E5%90%83%E8%9B%87-%E7%A7%BB%E5%8A%A8%E9%BC%A0%E6%A0%87%EF%BC%8C%E8%9B%87%E6%9D%A5%E8%BF%BD%E4%BD%A0-8B5CF6?style=for-the-badge&labelColor=0D1117)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Croesus-K/Croesus-K/main/snake.html?v=2)
 
 *GitHub 主页禁止运行脚本，上面是预录的巡游动画；点按钮进入互动版——整页网格，蛇沿方格追你的鼠标。*
 
