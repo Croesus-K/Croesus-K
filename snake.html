@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>网格贪吃蛇 · Croesus-K</title>
+<style>
+  html,body{margin:0;padding:0;height:100%;background:#0D1117;overflow:hidden;
+    font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;}
+  #bg{position:fixed;inset:0;display:block;}
+  .wrap{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;pointer-events:none;z-index:2;}
+  .wrap h1{margin:0;font-size:clamp(40px,8vw,84px);letter-spacing:2px;color:#fff;
+    text-shadow:0 0 18px rgba(88,166,255,.8),0 0 60px rgba(139,92,246,.5);}
+  .wrap p{margin:14px 0 0;color:#8B949E;font-size:clamp(14px,2.2vw,19px);}
+  .wrap p b{color:#58A6FF;}
+  .wrap a{pointer-events:auto;display:inline-block;margin-top:26px;padding:10px 22px;
+    border:1px solid #30363D;border-radius:10px;color:#C9D1D9;text-decoration:none;
+    font-size:15px;background:rgba(22,27,34,.85);transition:.2s;}
+  .wrap a:hover{border-color:#58A6FF;color:#58A6FF;box-shadow:0 0 18px rgba(88,166,255,.35);}
+  .hud{position:fixed;top:14px;right:18px;z-index:2;color:#8B949E;font-size:13px;
+    pointer-events:none;text-align:right;line-height:1.7;}
+  .hud b{color:#E11D48;font-size:16px;}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="hud">长度 <b id="len">8</b>　·　吃掉 <b id="eat">0</b></div>
+<div class="wrap">
+  <h1>Croesus-K</h1>
+  <p>移动鼠标 —— <b>网格蛇</b>会沿着方格来追你 🐍</p>
+  <a href="https://github.com/Croesus-K">← 回到 GitHub 主页</a>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('bg'),cx=cv.getContext('2d');
+  var CELL=28,DPR=Math.max(1,window.devicePixelRatio||1);
+  var W=0,H=0,COLS=0,ROWS=0;
+  var snake,dir,food,eaten=0,tick=null,SPEED=115;
+  var target={x:0,y:0};
+
+  function resize(){
+    W=window.innerWidth;H=window.innerHeight;
+    cv.width=W*DPR;cv.height=H*DPR;cv.style.width=W+'px';cv.style.height=H+'px';
+    cx.setTransform(DPR,0,0,DPR,0,0);
+    COLS=Math.max(8,Math.ceil(W/CELL));ROWS=Math.max(8,Math.ceil(H/CELL));
+    target.x=Math.floor(COLS/2);target.y=Math.floor(ROWS/2);
+  }
+  function reset(){
+    snake=[];var cy=Math.floor(ROWS/2),cx0=Math.floor(COLS/2);
+    for(var i=0;i<8;i++)snake.push({x:cx0-i,y:cy});
+    dir={x:1,y:0};eaten=0;spawnFood();upd();
+  }
+  function spawnFood(){
+    for(;;){var f={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)};
+      if(!snake.some(function(s){return s.x===f.x&&s.y===f.y})){food=f;return;}}
+  }
+  function upd(){document.getElementById('len').textContent=snake.length;
+    document.getElementById('eat').textContent=eaten;}
+
+  window.addEventListener('mousemove',function(e){
+    target.x=Math.min(COLS-1,Math.max(0,Math.floor(e.clientX/CELL)));
+    target.y=Math.min(ROWS-1,Math.max(0,Math.floor(e.clientY/CELL)));
+  });
+  window.addEventListener('touchmove',function(e){
+    if(!e.touches[0])return;
+    target.x=Math.min(COLS-1,Math.max(0,Math.floor(e.touches[0].clientX/CELL)));
+    target.y=Math.min(ROWS-1,Math.max(0,Math.floor(e.touches[0].clientY/CELL)));
+  },{passive:true});
+
+  function inBody(x,y){return snake.some(function(s){return s.x===x&&s.y===y});}
+
+  function step(){
+    var head=snake[0],best=null,bestD=1e9;
+    var dirs=[{x:1,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}];
+    // 优先：朝目标靠近 && 不撞自己
+    dirs.sort(function(a,b){
+      var da=Math.abs(head.x+a.x-target.x)+Math.abs(head.y+a.y-target.y);
+      var db=Math.abs(head.x+b.x-target.x)+Math.abs(head.y+b.y-target.y);
+      return da-db;});
+    for(var i=0;i<4;i++){var d=dirs[i],nx=head.x+d.x,ny=head.y+d.y;
+      if(nx<0||ny<0||nx>=COLS||ny>=ROWS)continue;
+      if(snake.length>1&&nx===snake[1].x&&ny===snake[1].y)continue;
+      if(inBody(nx,ny))continue;
+      best={x:d.x,y:d.y};break;}
+    if(!best){ // 实在无路可走：允许贴身绕，仍不行就重置
+      for(var j=0;j<4;j++){var d2=dirs[j],nx2=head.x+d2.x,ny2=head.y+d2.y;
+        if(nx2<0||ny2<0||nx2>=COLS||ny2>=ROWS)continue;
+        if(inBody(nx2,ny2))continue;best={x:d2.x,y:d2.y};break;}}
+    if(!best){reset();return;}
+    dir=best;
+    var nh={x:head.x+best.x,y:head.y+best.y};
+    snake.unshift(nh);
+    if(food&&nh.x===food.x&&nh.y===food.y){
+      eaten++;SPEED=Math.max(70,SPEED-2);spawnFood();
+      if(snake.length>40)snake.pop();
+      clearInterval(tick);tick=setInterval(step,SPEED);
+    }else snake.pop();
+    upd();
+  }
+
+  function render(){
+    cx.fillStyle='#0D1117';cx.fillRect(0,0,W,H);
+    // 网格
+    cx.strokeStyle='rgba(48,54,61,.55)';cx.lineWidth=1;
+    cx.beginPath();
+    for(var gx=0;gx<=COLS;gx++){cx.moveTo(gx*CELL+.5,0);cx.lineTo(gx*CELL+.5,H);}
+    for(var gy=0;gy<=ROWS;gy++){cx.moveTo(0,gy*CELL+.5);cx.lineTo(W,gy*CELL+.5);}
+    cx.stroke();
+    // 目标格（鼠标位置）高亮
+    cx.fillStyle='rgba(88,166,255,.14)';
+    cx.fillRect(target.x*CELL,target.y*CELL,CELL,CELL);
+    cx.strokeStyle='rgba(88,166,255,.6)';
+    cx.strokeRect(target.x*CELL+2.5,target.y*CELL+2.5,CELL-5,CELL-5);
+    // 食物
+    if(food){var pad=6;cx.save();
+      cx.shadowColor='#E11D48';cx.shadowBlur=14;
+      cx.fillStyle='#E11D48';
+      cx.beginPath();
+      cx.roundRect(food.x*CELL+pad,food.y*CELL+pad,CELL-2*pad,CELL-2*pad,6);
+      cx.fill();cx.restore();}
+    // 蛇身（头蓝紫 → 尾红渐变 + 发光）
+    for(var i=snake.length-1;i>=0;i--){
+      var s=snake[i],t=snake.length>1?i/(snake.length-1):0;
+      var hue=213+t*117,light=62-t*14;
+      cx.save();
+      if(i===0){cx.shadowColor='hsl('+hue+',95%,60%)';cx.shadowBlur=18;}
+      else if(i<4){cx.shadowColor='hsl('+hue+',90%,55%)';cx.shadowBlur=8;}
+      cx.fillStyle='hsl('+hue+',90%,'+light+'%)';
+      cx.beginPath();
+      cx.roundRect(s.x*CELL+3,s.y*CELL+3,CELL-6,CELL-6,i===0?8:5);
+      cx.fill();cx.restore();
+    }
+    // 蛇眼睛（随方向）
+    var h0=snake[0],ex=h0.x*CELL+CELL/2,ey=h0.y*CELL+CELL/2;
+    var ox=dir.y!==0?5:dir.x*4,oy=dir.x!==0?5:dir.y*4;
+    cx.fillStyle='#fff';
+    cx.beginPath();cx.arc(ex-ox,ey-oy,2.4,0,7);cx.arc(ex+ox,ey+oy,2.4,0,7);cx.fill();
+  }
+
+  window.addEventListener('resize',function(){resize();});
+  resize();reset();
+  tick=setInterval(function(){step();render();},SPEED);
+  render();
+})();
+</script>
+</body>
+</html>

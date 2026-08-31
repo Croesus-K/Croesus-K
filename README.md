@@ -55,13 +55,17 @@
 
 ---
 
-## 🐍 贪吃蛇的时间
+## 🎮 网格贪吃蛇
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Croesus-K/Croesus-K/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Croesus-K/Croesus-K/output/github-contribution-grid-snake.svg" />
-  <img alt="contribution snake" src="https://raw.githubusercontent.com/Croesus-K/Croesus-K/output/github-contribution-grid-snake.svg" />
-</picture>
+<div align="center">
+
+**整页都是网格，蛇沿着方格追着你的鼠标跑。**
+
+[![🐍 网格贪吃蛇 · 移动鼠标，蛇来追你](https://img.shields.io/badge/%F0%9F%8E%AE_%E7%BD%91%E6%A0%BC%E8%B4%AA%E5%90%83%E8%9B%87-%E7%A7%BB%E5%8A%A8%E9%BC%A0%E6%A0%87%EF%BC%8C%E8%9B%87%E6%9D%A5%E8%BF%BD%E4%BD%A0-8B5CF6?style=for-the-badge&labelColor=0D1117)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Croesus-K/Croesus-K/main/snake.html)
+
+*GitHub 的 README 页面禁止运行脚本，所以游戏放在独立页面里——点上面按钮即玩，吃掉红色方块会越来越快。*
+
+</div>
 
 ---
 
