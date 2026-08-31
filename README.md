@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=8B5CF6&center=true&vCenter=true&multiline=true&width=560&height=76&lines=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AF+Croesus-K+%F0%9F%91%8B;%E5%AE%88%E4%BD%8F%E6%AF%8F%E4%B8%80%E8%A1%8C%20diff%20%F0%9F%9B%A1%EF%B8%8F;%E4%BB%8E%20Math.random%20%E7%9A%84%E6%95%99%E8%AE%AD%E5%BC%80%E5%A7%8B%EF%BC%8C%E9%80%A0%E7%82%BA%E5%AD%90%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%20%E2%9C%A8" alt="你好，我是 Croesus-K" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=8B5CF6&center=true&vCenter=true&multiline=true&width=800&height=100&lines=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AF+Croesus-K+%F0%9F%91%8B;%E5%AE%88%E4%BD%8F%E6%AF%8F%E4%B8%80%E8%A1%8C+diff+%F0%9F%9B%A1%EF%B8%8F;%E4%BB%8E+Math.random+%E7%9A%84%E6%95%99%E8%AE%AD%E5%BC%80%E5%A7%8B%EF%BC%8C%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7+%E2%9C%A8" alt="你好，我是 Croesus-K" />
 
 <img src="https://img.shields.io/badge/%E5%85%B3%E6%B3%A8%E6%96%B9%E5%90%91-AI_%C3%97_%E5%AE%89%E5%85%A8_%C3%97_%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7-58A6FF?style=for-the-badge&labelColor=0D1117" alt="关注方向" />
 
