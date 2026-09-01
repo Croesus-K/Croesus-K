@@ -75,8 +75,7 @@
 
 **Fork 参与**
 
-- 🌐 [owasp-vwad.github.io](https://github.com/Croesus-K/owasp-vwad.github.io) —— OWASP VWAD 官网：InjectArena 收录 PR [#112](https://github.com/owasp-vwad/owasp-vwad.github.io/pull/112) ✅ 已合并，条目已上线
-- 🌐 [www-project-vulnerable-web-applications-directory](https://github.com/Croesus-K/www-project-vulnerable-web-applications-directory) —— OWASP VWAD 旧版项目仓库（PR #277 已关闭，收录改由官网仓库完成）
+- 🌐 OWASP VWAD 官网仓库：InjectArena 收录 PR [#112](https://github.com/owasp-vwad/owasp-vwad.github.io/pull/112) ✅ 已合并，条目已上线 → [vwad.owasp.org/app/injectarena](https://vwad.owasp.org/app/injectarena/)
 
 ---
 
