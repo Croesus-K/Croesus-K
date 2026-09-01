@@ -91,20 +91,11 @@
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=Croesus-K&show_icons=true&locale=zh-cn&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=8B5CF6&text_color=C9D1D9" alt="stats" />
 <img height="165" src="https://streak-stats.demolab.com?user=Croesus-K&theme=github-dark-blue&hide_border=true&background=0D1117&fire=DD4B39&ring=8B5CF6&currStreakLabel=58A6FF" alt="streak" />
-
-<img src="https://github-profile-trophy.vercel.app/?username=Croesus-K&theme=discord&no-frame=true&row=1&column=7&margin-w=8" alt="trophies" width="100%" />
 
 </div>
 
 ---
-
-<div align="center">
-
-<img height="150" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Croesus-K&locale=zh-cn&layout=compact&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9" alt="top langs" />
-
-</div>
 
 <!-- 动态 stat 卡片待 npm 发布后一并添加 -->
 
